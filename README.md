@@ -1,6 +1,6 @@
-# Expediting Vision Language Generation via Redundancy Reduction
+# Expedited Training of Visual Conditioned Language Generation via Redundancy Reduction
 
-This repo covers implementations of models in an ARR submission: **Expediting Vision Language Generation via Redundancy Reduction**. The code is developed based on [LAVIS](https://github.com/salesforce/LAVIS/) project.
+This repo covers implementations of models in an ARR submission: **Expedited Training of Visual Conditioned Language Generation via Redundancy Reduction**. The code is developed based on [LAVIS](https://github.com/salesforce/LAVIS/) project.
 
 ## Anoymous GitHub Page
 We are not part of LAVIS project and we have removed links, usernames, paths, etc which may reveal our identities.
