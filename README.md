@@ -1,9 +1,9 @@
 # Expediting Vision Language Generation via Redundancy Reduction
 
-This repo covers implementations of models in an ARR submission "Expediting Vision Language Generation via Redundancy Reduction". The code is developed based on [LAVIS](https://github.com/salesforce/LAVIS/) project.
+This repo covers implementations of models in an ARR submission: **Expediting Vision Language Generation via Redundancy Reduction**. The code is developed based on [LAVIS](https://github.com/salesforce/LAVIS/) project.
 
 ## Anoymous GitHub Page
-**We are not part of LAVIS project and we have removed links, usernames, paths, etc which may reveal our identities.**
+We are not part of LAVIS project and we have removed links, usernames, paths, etc which may reveal our identities.
 
 
 ## EVLGen Models
@@ -44,6 +44,9 @@ We provide example scripts for evaluation (image and video models):
 python -m torch.distributed.run --nproc_per_node=8 evaluate.py --cfg-path lavis/projects/EVLGen/eval/caption_coco_opt2.7b_eval.yaml
 python -m torch.distributed.run --nproc_per_node=8 evaluate.py --cfg-path lavis/projects/EVLGen_video/eval/caption_msrvtt_opt2.7b_eval.yaml
 ```
+
+## Pretrained Models
+Pretrained models (weights) will be released soon.
 
 ## Acknowlegements
 The code is developed based on [LAVIS](https://github.com/salesforce/LAVIS/) project.
