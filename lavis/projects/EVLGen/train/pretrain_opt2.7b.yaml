@@ -52,25 +52,7 @@ datasets:
         eval:
           name: "blip_caption"
 
-  # vg_caption:
-  #   vis_processor:
-  #       train:
-  #         name: "blip2_image_train"
-  #         image_size: 224
-  #   text_processor:
-  #       train:
-  #         name: "blip_caption"
-
 run:
-  train_dataset_ratios: 
-    laion115M: 38
-    ccs14M: 8
-    coco_caption: 4
-
-  # train_dataset_ratios: 
-  #   ccs14M: 180
-  #   coco_caption: 20
-    
   runner: runner_iter
   max_iters: 150000 
   iters_per_inner_epoch: 5000
