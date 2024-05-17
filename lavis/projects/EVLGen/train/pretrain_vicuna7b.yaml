@@ -4,11 +4,13 @@
  # For full license text, see the LICENSE file in the repo root or https://opensource.org/licenses/BSD-3-Clause
 
 model:
-  arch: liptome_opt
-  model_type: pretrain_opt2.7b
+  arch: liptome_vicuna
+  model_type: pretrain_vicuna7b
   load_pretrained: False
   load_finetuned: False
   freeze_vit: True
+
+  #vit_model: "clip_L"
 
   pretrained: ""
   finetuned: ""
@@ -19,16 +21,15 @@ model:
   alpha: 0.4
   beta: 0.0
 
-datasets:      
-  laion115M:
-    vis_processor:
-        train:
-          name: "blip2_image_train"
-          image_size: 224
-    text_processor:
-        train:
-          name: "blip_caption"  
+  # path to Vicuna checkpoint
+  llm_model: "/home/yiren/new_ssd/cache_dir/vicuna-7b-v1.3"
 
+  # generation configs
+  prompt: ""
+  max_txt_len: 32
+  max_output_txt_len: 32
+
+datasets:
   ccs14M:
     vis_processor:
         train:
@@ -54,14 +55,14 @@ datasets:
 
 run:
   train_dataset_ratios:
-    laion115M: 15
-    ccs14M: 4
-    coco_caption: 1
+    ccs14M: 45
+    coco_caption: 5
 
   runner: runner_iter
-  max_iters: 250000 
+  max_iters: 60000
   iters_per_inner_epoch: 5000
-  
+  accum_grad_iters: 1
+
   task: captioning
   # optimizer
   lr_sched: "linear_warmup_cosine_lr"
@@ -70,22 +71,22 @@ run:
   warmup_lr: 1e-6
 
   weight_decay: 0.05
-  batch_size_train: 200
-  batch_size_eval: 100
+  batch_size_train: 20
+  batch_size_eval: 20
   num_workers: 4
-  warmup_steps: 5000
+  warmup_steps: 2000
 
   max_len: 30
   min_len: 8
   num_beams: 5
 
   seed: 42
-  output_dir: "EVLGen/OPT_mscoco/pretrain_opt2.7b"
+  output_dir: "output/EVLGen/Vicuna_mscoco/eva_vit_g"
 
   amp: True
   resume_ckpt_path: null
 
-  evaluate: False 
+  evaluate: False
   train_splits: ["train"]
   valid_splits: ["val"]
 

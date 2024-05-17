@@ -2,39 +2,46 @@ model:
   arch: liptome_opt
   model_type: pretrain_opt2.7b
   load_pretrained: True
-  
+
   pretrained: "/home/yiren/new_ssd/saved_checkpoints/LIPTome/OPT_mscoco/20230812163/checkpoint_250004.pth"
 
   # ToMe config
   tome_r: 19
 
+  # for OKVQA evaluation
+  apply_lemmatizer: True
+
 datasets:
-  coco_caption: # name of the dataset builder
+  ok_vqa: # name of the dataset builder
     vis_processor:
         eval:
           name: "blip_image_eval"
           image_size: 224
     text_processor:
         eval:
-          name: "blip_caption"
+          name: "blip_question"
 
 run:
-  task: captioning
-  # optimizer
+  task: vqa
+  # optimization-specific
   batch_size_train: 16
   batch_size_eval: 32
   num_workers: 4
 
-  max_len: 30
-  min_len: 8
+  # inference-specific
+  max_len: 10
+  min_len: 1
   num_beams: 5
+  inference_method: "generate"
+  prompt: "Question: {} Short answer:"
 
   seed: 42
-  output_dir: "output/EVLGen/Caption_coco_opt2.7b"
+  output_dir: "output/EVLGen/OKVQA"
 
   evaluate: True
-  test_splits: ["val"]
+  test_splits: ["test"]
 
+  # distribution-specific
   device: "cuda"
   world_size: 1
   dist_url: "env://"

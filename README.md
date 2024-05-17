@@ -1,9 +1,6 @@
 # Expedited Training of Visual Conditioned Language Generation via Redundancy Reduction
 
-This repo covers implementations of models in an ARR submission: **Expedited Training of Visual Conditioned Language Generation via Redundancy Reduction**. The code is developed based on [LAVIS](https://github.com/salesforce/LAVIS/) project.
-
-## Anoymous GitHub Page
-We are not part of LAVIS project and we have removed links, usernames, paths, etc which may reveal our identities.
+This repo covers implementations of models in: **Expedited Training of Visual Conditioned Language Generation via Redundancy Reduction** to be presented at ACL 2024. The code is developed based on [LAVIS](https://github.com/salesforce/LAVIS/) project.
 
 
 ## EVLGen Models
@@ -32,21 +29,26 @@ Please follow instructions from [LAVIS](https://github.com/salesforce/LAVIS/) to
 
 ## Training
 We provide example script for training (image and video models):
-```
+```bash
 python -m torch.distributed.run --nproc_per_node=8 train.py --cfg-path lavis/projects/EVLGen/train/pretrain_opt2.7b.yaml
+
 python -m torch.distributed.run --nproc_per_node=8 train.py --cfg-path lavis/projects/EVLGen_video/train/caption_msrvtt_opt2.7b_ft.yaml
 
 ```
 
 ## Evaluation
 We provide example scripts for evaluation (image and video models):
-```
+```bash
 python -m torch.distributed.run --nproc_per_node=8 evaluate.py --cfg-path lavis/projects/EVLGen/eval/caption_coco_opt2.7b_eval.yaml
+python -m torch.distributed.run --nproc_per_node=8 evaluate.py --cfg-path lavis/projects/EVLGen/eval/gqa_zeroshot_opt2.7b_eval.yaml
+python -m torch.distributed.run --nproc_per_node=8 evaluate.py --cfg-path lavis/projects/EVLGen/eval/okvqa_zeroshot_opt2.7b_eval.yaml
+python -m torch.distributed.run --nproc_per_node=8 evaluate.py --cfg-path lavis/projects/EVLGen/eval/vqav2_zeroshot_opt2.7b_eval.yaml
+
 python -m torch.distributed.run --nproc_per_node=8 evaluate.py --cfg-path lavis/projects/EVLGen_video/eval/caption_msrvtt_opt2.7b_eval.yaml
 ```
 
 ## Pretrained Models
-Pretrained models (weights) will be released soon.
+We provide pretrained models (EVLGen-image based on opt-2.7b and vicuna-7b) in [Dropbox](https://www.dropbox.com/scl/fo/zily1eayhexf6qa85i1qz/ADqocf2e2PMcFYDcJ0Cleu0?rlkey=g3vsom8t6edtkwyr22qfmd3w4&st=oxdq18ds&dl=0).
 
 ## Acknowlegements
 The code is developed based on [LAVIS](https://github.com/salesforce/LAVIS/) project.
