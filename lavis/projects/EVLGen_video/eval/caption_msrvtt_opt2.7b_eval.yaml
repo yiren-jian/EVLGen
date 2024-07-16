@@ -1,0 +1,49 @@
+model:
+  arch: liptome_video_opt
+  model_type: pretrain_opt2.7b
+  load_pretrained: True
+  freeze_vit: True
+  vit_precision: fp32
+
+  pretrained: ""
+
+  # ToMe config
+  tome_r: 19
+
+datasets:
+  msrvtt_caption: # name of the dataset builder
+    vis_processor:
+        train:
+          name: "alpro_video_train"
+          n_frms: 4
+          image_size: 224
+        eval:
+          name: "alpro_video_eval"
+          n_frms: 4
+          image_size: 224
+    text_processor:
+        train:
+          name: "blip_caption"
+        eval:
+          name: "blip_caption"
+
+run:
+  task: captioning
+  batch_size_train: 18
+  batch_size_eval: 12
+  num_workers: 4
+
+  max_len: 20
+  min_len: 5
+  num_beams: 5
+
+  seed: 42
+  output_dir: "output/EVLGen-Video/Caption_msrvtt"
+
+  evaluate: True
+  test_splits: ["test"]
+
+  device: "cuda"
+  world_size: 1
+  dist_url: "env://"
+  distributed: True
